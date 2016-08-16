@@ -9,11 +9,11 @@ $(document).ready(function() {
     $loader.hide();
 
 
-    $btn.on('click', function(e) {
-
-        // prevent the default behavior of the link
-        e.preventDefault();
-        console.log('click'); //Display if clicked
+    // $btn.on('click', function(e) {
+    //
+    //     // prevent the default behavior of the link
+    //     e.preventDefault();
+    //     console.log('click'); //Display if clicked
         //
         //     // execute the AJAX request
         $.ajax({
@@ -30,14 +30,18 @@ $(document).ready(function() {
             .fail(failFunction);
         //.always(alwaysFunction);
 
-    });
+    // });
 
     function successFunction(data) {
         console.log('in successFunction');
-        // To display degree Celius"&#8451;"
+
         console.log("Data : " + data);
         $loader.hide();
-        //$bio.html('weather here in ' + data.name);
+        $( '<h4>' + 'About '+ data.name + '</h4>' + '<br>' ).appendTo($bio);
+        $( '<b>' + 'email        : ' + '</b>' + '<p>' + data.email + '</p>' + '<br>'  ).appendTo($bio);
+        $( '<b>' + 'Contact No.  : ' + '</b>' + '<p>' + data.contactnum + '</p>' + '<br>'  ).appendTo($bio);
+        $( '<b>' + 'Hobbies      : ' + '</b>' + '<p>' + data.hobbies + '</p>' + '<br>'  ).appendTo($bio);
+        $( '<b>' + 'Facebook page: ' + '</b>' + '<p>' + data.facebook + '</p>' + '<br>'  ).appendTo($bio);
     }
 
     function failFunction(request, textStatus, errorThrown) {
@@ -46,49 +50,4 @@ $(document).ready(function() {
     }
 
 
-
-    // $btn.on('click', function(e) {
-    //
-    //     // prevent the default behavior of the link
-    //     e.preventDefault();
-    //     console.log('click'); //Display if clicked
-    //
-    //     // execute the AJAX request
-    //     $.ajax({
-    //             // where the data live
-    //             url: 'http://api.openweathermap.org/data/2.5/weather?q=Singapore&units=metric&APPID=24801b8eecaa5f34812e5e8f1d25b62d',
-    //             type: 'GET',
-    //             // what is their type
-    //             dataType: 'JSON',
-    //             // show the loader before making the request
-    //             beforeSend: function(xhr) {
-    //                 $loader.show();
-    //             },
-    //         }).done(successFunction)
-    //         .fail(failFunction);
-    //         //.always(alwaysFunction);
-    // });
-    //
-    // function successFunction(data) {
-    //     console.log('in successFunction');
-    //
-    //     // To display degree Celius"&#8451;"
-    //
-    //     console.log(data);
-    //     console.log('Country name: ' + data.name );
-    //     console.log('Country code: ' + data.sys.country );
-    //     console.log('Main Temperature: ' + data.main.temp );
-    //     console.log('Max Temperature: ' + data.main.temp_max );
-    //     console.log('Min Temperature: ' + data.main.temp_min );
-    //     console.log('Cloudiness: ' + data.clouds.all + ' % ');
-    //
-    //     $loader.hide();
-    //     $bio.html('weather here in ' + data.name);
-    // }
-    //
-    // function failFunction(request, textStatus, errorThrown) {
-    //     // hide the list and show the corresponding message
-    //     $bio.html('An error occurred during your request: ' + request.status + ' ' + textStatus + ' ' + errorThrown);
-    // }
-
-});
+ });
